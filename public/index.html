@@ -2,318 +2,583 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/index.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <title>College Website</title>
-  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Website Navbar</title>
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+        body {
+            background-color: #f5f5f5;
+        }
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        .navbar {
+            background-color: #3E8DA8;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 100;
+        }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+        .navbar-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .navbar-item {
+            position: relative;
+            color: white;
+            padding: 15px 12px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-item:hover {
+            background-color: #2c6478;
+        }
+
+        .navbar-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .module-text {
+            cursor: pointer;
+        }
+
+        .dropdown-toggle {
+            margin-left: 6px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-toggle.active {
+            transform: rotate(90deg);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 230px;
+            background-color: #3E8DA8;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 101;
+        }
+
+        .dropdown.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #2c6478;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #2c6478;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .navbar {
+                justify-content: flex-start;
+                padding-left: 15px;
+            }
+
+            .mobile-toggle {
+                display: block;
+                text-align: left;
+                width: auto;
+            }
+
+            .navbar-container {
+                position: fixed;
+                top: 0;
+                left: -70%;
+                width: 70%;
+                height: 100%;
+                background-color: #3E8DA8;
+                flex-direction: column;
+                overflow-y: auto;
+                transition: left 0.3s ease;
+                z-index: 102;
+                padding-top: 60px;
+            }
+
+            .navbar-container.active {
+                left: 0;
+            }
+
+            .navbar-item {
+                width: 100%;
+                padding: 12px 16px;
+                border-bottom: 1px solid #2c6478;
+            }
+
+            .navbar-item a {
+                color: white;
+                text-decoration: none;
+            }
+
+            .dropdown {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                background-color: #2c6478;
+            }
+
+            .dropdown-item {
+                padding-left: 24px;
+                background-color: #2c6478;
+                border-bottom: 1px solid #1b5162;
+            }
+
+            .dropdown-item:hover {
+                background-color: #1b5162;
+            }
+
+            .dropdown-toggle.active {
+                transform: rotate(90deg);
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 101;
+            }
+
+            .overlay.active {
+                display: block;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            /* Sizing */
+            width: 100vw;
+            height: 80vh;
+
+            /* Flexbox stuff */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* Text styles */
+            text-align: center;
+            color: white;
+
+            /* Background styles */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/mcc-front.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            /* Text styles */
+            font-size: 3em;
+
+            /* Margins */
+            margin-top: 0;
+            margin-bottom: 0.5em;
+        }
+
+        .hero .btn {
+            /* Positioning and sizing */
+            display: block;
+            width: 200px;
+
+            /* Padding and margins */
+            padding: 1em;
+            margin-top: 50px;
+            margin-left: auto;
+            margin-right: auto;
+
+            /* Text styles */
+            color: white;
+            /* CHANGE THIS LINE */
+            text-decoration: none;
+            font-size: 1.5em;
+
+            /* Border styles */
+            border: 3px solid white;
+            /* CHANGE THIS LINE */
+            border-radius: 20px;
+        }
 
 
+
+        /* ----- FACILITIES ---------- */
+        .row {
+            margin-top: 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .facilities {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .facilities-col {
+            flex-basis: 31%;
+            border-radius: 10px;
+            margin-bottom: 5%;
+            text-align: left;
+        }
+
+        .facilities-col img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+
+        .facilities-col p {
+            padding: 0%;
+        }
+
+        .facilities-col h3 {
+            margin-top: 16px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .facilities-col img:hover {
+            box-shadow: 3.5px 5px 15px 10px rgba(0, 0, 0, 0.308);
+        }
+
+        @media (max-width: 700px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .facilities-col img:hover {
+                box-shadow: none;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
-  <nav>
-    <div class="navbar">
-      <i class='bx bx-menu'></i>
-      <!-- <div class="logo"><a href="#">CodingLab</a></div> -->
-      <div class="nav-links">
-        <div class="sidebar-logo">
-          <!-- <span class="logo-name">CodingLab</span> -->
-          <i class='bx bx-x'></i>
+    <nav class="navbar">
+        <button class="mobile-toggle">☰</button>
+        <div class="navbar-container">
+            <div class="navbar-item">
+                <a href="#aboutus" class="direct-link">About Us</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#principal" class="dropdown-item">From the Principal's Desk</a>
+                    <a href="#profile" class="dropdown-item">Profile</a>
+                    <a href="#programmes" class="dropdown-item">Programmes</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#events" class="direct-link">Events</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#spectrum" class="dropdown-item">Spectrum</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#autonomy" class="direct-link">Autonomy</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#committees" class="dropdown-item">Activity Committees</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#departments" class="direct-link">Departments</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#it" class="dropdown-item">Information Technology</a>
+                    <a href="#cs" class="dropdown-item">Computer Science</a>
+                    <a href="#ds" class="dropdown-item">Data Science</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#nep">NEP</a>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#alumni">Alumni</a>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#research" class="direct-link">Research</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#research-policy" class="dropdown-item">Institutional Research Policy</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#gallery" class="direct-link">Gallery</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#spectrum23" class="dropdown-item">Spectrum 23</a>
+                    <a href="#alumni-meet" class="dropdown-item">Alumni Meet</a>
+                    <a href="#convocation" class="dropdown-item">Convocation</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#nirf" class="direct-link">NIRF</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#nirf-22-23" class="dropdown-item">NIRF Report 2022-23</a>
+                    <a href="#nirf-21-22" class="dropdown-item">NIRF Report 2021-22</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#naac" class="direct-link">NAAC</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#aqar-22-23" class="dropdown-item">AQAR 2022-23</a>
+                    <a href="#aqar-21-22" class="dropdown-item">AQAR 2021-22</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#latest-news" class="direct-link">Latest News</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#examinations" class="dropdown-item">Examinations</a>
+                    <a href="#notices" class="dropdown-item">Notices</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#scholarship" class="direct-link">Scholarship</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#scholarship-notices" class="dropdown-item">Scholarship Notices</a>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <a href="#iqac" class="direct-link">IQAC</a>
+                <span class="dropdown-toggle module-text">></span>
+                <div class="dropdown">
+                    <a href="#objective" class="dropdown-item">Objective</a>
+                    <a href="#composition" class="dropdown-item">Composition</a>
+                    <a href="#meeting" class="dropdown-item">Meeting</a>
+                    <a href="#feedback" class="dropdown-item">Feedback</a>
+                </div>
+            </div>
         </div>
-        <ul class="links">
-          
-          <li>
-            <a href="#">About Us</a>
-            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
-            <ul class="htmlCss-sub-menu sub-menu">
-              <li><a href="#">From the principal's desk</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Programmes</a></li>
-              <!-- <li class="more">
-                <span><a href="#">More</a>
-                  <i class='bx bxs-chevron-right arrow more-arrow'></i>
-                </span>
-                <ul class="more-sub-menu sub-menu">
-                  <li><a href="#">Neumorphism</a></li>
-                  <li><a href="#">Pre-loader</a></li>
-                  <li><a href="#">Glassmorphism</a></li>
-                </ul>
-              </li> -->
-            </ul>
-          </li>
-          <li>
-            <a href="#">Events</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Spectrum</a></li>
-            </ul>
-          </li>
+        <div class="overlay"></div>
+    </nav>
 
-          <li>
-            <a href="#">Events</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Spectrum</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Autonomy</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Activity Committees</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Departments</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Information Technology</a></li>
-              <li><a href="#">Computer science</a></li>
-              <li><a href="#">Data Science</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">NEP</a>
-          </li>
-
-          <li>
-            <a href="#">Alumni</a>
-          </li>
-          <li>
-            <a href="#">Reserch</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Institutional Research Policy</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Gallery</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Spectrum 23</a></li>
-              <li><a href="#">Alumni meet</a></li>
-              <li><a href="#">Convocation</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">NIRF</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">NIRF report 2022-23</a></li>
-              <li><a href="#">NIRF report 2021-22</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">NAAC</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">AQAR 2022-23</a></li>
-              <li><a href="#">AQAR 2021-22</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Latest news</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Examinations</a></li>
-              <li><a href="#">Notices</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Scholarship</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Scholarship notices</a></li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">IQAC</a>
-            <i class='bx bxs-chevron-down js-arrow arrow '></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Objective</a></li>
-              <li><a href="#">Composition</a></li>
-              <li><a href="#">Meeting</a></li>
-              <li><a href="#">Feedback</a></li>
-            </ul>
-          </li>
-
-
-          
-
-
-        </ul>
-      </div>
-      <div class="search-box">
-        <i class='bx bx-search'></i>
-        <div class="input-box">
-          <input type="text" placeholder="Search...">
+    <!-- ----------------- HEADER --------------------- -->
+    <header
+        style="display: flex; align-items: center; justify-content: center; background-color: #f5f5f5; padding: 20px; border-bottom: 2px solid #ddd; gap: 20px;">
+        <div class="logo" style="flex-shrink: 0;">
+            <img src="assets/MCClogo.png" alt="Logo" style="height: 60px; width: auto;">
         </div>
-      </div>
+        <div class="header-text" style="text-align: left;">
+            <!-- <p style="margin: 0; font-size: 14px; color: #666;">Parle Tilak Vidyalaya Association</p>  -->
+            <!-- <h1 style="margin: 0; font-size: 24px; color: #333;">MULUND COLLEGE OF COMMERCE (AUTONOMOUS)</h1> -->
+            <h1 style="margin: 0; font-size: 24px; color: #333;">Shetkari Shikshan Sanstha's college of management and
+                commerce</h1>
+            <!-- <p style="margin: 0; font-size: 14px; color: #666;">NAAC "A" GRADE RE-ACCREDITEDM (III Cycle) 2016-2026</p> -->
+        </div>
+    </header>
+
+    <!-- ---------------------------------------------------------- -->
+
+
+
+
+
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Welcome to the college</h1>
+            <h2>Empowering Excellence in Education Since 1970</h2>
+            <a href="" class="btn">Read more..</a>
+        </div>
+    </section>
+
+
+
+    <section class="facilities">
+        <h1> Our facilities</h1>
+        <p>Facilities provide for Students by Mulund College of Commerce</p>
+
+        <div class="row">
+            <div class="facilities-col">
+                <img src="assets/facilities/mcc-gymkhana.jpeg" alt="">
+                <h3>Gymkhana</h3>
+                <p>A vibrant space fostering physical fitness, sportsmanship, and recreational activities for holistic
+                    development.</p>
+            </div>
+
+            <div class="facilities-col">
+                <img src="assets/facilities/mcc-lab.jpg" alt="">
+                <h3>Computer-Labs</h3>
+                <p>State-of-the-art computer labs equipped with modern technology to enhance digital learning and
+                    innovation.
+                </p>
+            </div>
+
+            <div class="facilities-col">
+                <img src="assets/facilities/mcc-turf.jpg" alt="">
+                <h3>Turf</h3>
+                <p>A well-maintained turf providing the perfect setting for outdoor sports and team-building activities.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="icon ion-social-twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="icon ion-social-linkedin"></i>
+                </a>
+                <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="icon ion-social-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="icon ion-social-facebook"></i>
+                </a>
+            </div>
+            <hr style="height:2px;border-width:0;color:gray;background-color:white">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="index.html">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Sitemap</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Notice</a></li>
+            </ul>
+            <p class="copyright">© 2024 MCC (Mulund College of Commerce)</p>
+        </footer>
     </div>
-  </nav><br><br><br>
 
 
 
-  <!-- ----------------- HEADER --------------------- -->
-  <header
-    style="display: flex; align-items: center; justify-content: center; background-color: #f5f5f5; padding: 20px; border-bottom: 2px solid #ddd; gap: 20px;">
-    <div class="logo" style="flex-shrink: 0;">
-      <img src="assets/MCClogo.png" alt="Logo" style="height: 60px; width: auto;">
-    </div>
-    <div class="header-text" style="text-align: left;">
-      <!-- <p style="margin: 0; font-size: 14px; color: #666;">Parle Tilak Vidyalaya Association</p>  -->
-      <!-- <h1 style="margin: 0; font-size: 24px; color: #333;">MULUND COLLEGE OF COMMERCE (AUTONOMOUS)</h1> -->
-      <h1 style="margin: 0; font-size: 24px; color: #333;">Shetkari Shikshan Sanstha's college of management and commerce</h1>
-       <!-- <p style="margin: 0; font-size: 14px; color: #666;">NAAC "A" GRADE RE-ACCREDITEDM (III Cycle) 2016-2026</p> -->
-    </div>
-  </header>
+    <script>
+        // JavaScript for mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function () {
+            document.querySelector('.navbar-container').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        });
 
-  <!-- ---------------------------------------------------------- -->
+        // Function to toggle dropdown
+        function toggleDropdown(element) {
+            // Get parent navbar-item
+            const navItem = element.closest('.navbar-item');
+            if (!navItem) return;
 
+            const dropdown = navItem.querySelector('.dropdown');
+            const dropdownToggle = navItem.querySelector('.dropdown-toggle');
 
+            // If no dropdown, it's a direct link - don't interfere
+            if (!dropdown || !dropdownToggle) return;
 
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                if (dropdown !== navItem.querySelector('.dropdown')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+            document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                if (toggle !== dropdownToggle) {
+                    toggle.classList.remove('active');
+                }
+            });
 
+            // Toggle current dropdown
+            dropdownToggle.classList.toggle('active');
+            dropdown.classList.toggle('show');
+        }
 
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Welcome to the college</h1>
-      <h2>Empowering Excellence in Education Since 1970</h2>
-      <a href="" class="btn">Read more..</a>
-    </div>
-  </section>
+        // Add click event listeners for dropdown toggles
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleDropdown(this);
+            });
+        });
 
+        // Add click event listeners for module text (main menu items)
+        document.querySelectorAll('.direct-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                // If the link has dropdown siblings
+                const dropdown = this.closest('.navbar-item').querySelector('.dropdown');
+                if (dropdown) {
+                    e.preventDefault(); // Prevent navigation on first click
+                    toggleDropdown(this);
+                }
+            });
+        });
 
+        // Close sidebar when clicking overlay
+        document.querySelector('.overlay').addEventListener('click', function () {
+            document.querySelector('.navbar-container').classList.remove('active');
+            document.querySelector('.overlay').classList.remove('active');
+        });
 
-  <section class="facilities">
-    <h1> Our facilities</h1>
-    <p>Facilities provide for Students by Mulund College of Commerce</p>
-
-    <div class="row">
-      <div class="facilities-col">
-        <img src="assets/facilities/mcc-gymkhana.jpeg" alt="">
-        <h3>Gymkhana</h3>
-        <p>A vibrant space fostering physical fitness, sportsmanship, and recreational activities for holistic
-          development.</p>
-      </div>
-
-      <div class="facilities-col">
-        <img src="assets/facilities/mcc-lab.jpg" alt="">
-        <h3>Computer-Labs</h3>
-        <p>State-of-the-art computer labs equipped with modern technology to enhance digital learning and innovation.
-        </p>
-      </div>
-
-      <div class="facilities-col">
-        <img src="assets/facilities/mcc-turf.jpg" alt="">
-        <h3>Turf</h3>
-        <p>A well-maintained turf providing the perfect setting for outdoor sports and team-building activities.</p>
-      </div>
-    </div>
-  </section>
-
-
-
-  <div class="footer-basic">
-    <footer>
-      <div class="social">
-        <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank" rel="noopener noreferrer">
-          <i class="icon ion-social-twitter"></i>
-        </a>
-        <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank" rel="noopener noreferrer">
-          <i class="icon ion-social-linkedin"></i>
-        </a>
-        <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank" rel="noopener noreferrer">
-          <i class="icon ion-social-instagram"></i>
-        </a>
-        <a href="https://www.linkedin.com/school/mulund-college-of-commerce/" target="_blank" rel="noopener noreferrer">
-          <i class="icon ion-social-facebook"></i>
-        </a>
-      </div>
-      <hr style="height:2px;border-width:0;color:gray;background-color:white">
-      <ul class="list-inline">
-        <li class="list-inline-item"><a href="index.html">Home</a></li>
-        <li class="list-inline-item"><a href="#">Services</a></li>
-        <li class="list-inline-item"><a href="#">About</a></li>
-        <li class="list-inline-item"><a href="#">Sitemap</a></li>
-        <li class="list-inline-item"><a href="#">Privacy Notice</a></li>
-      </ul>
-      <p class="copyright">© 2024 MCC (Mulund College of Commerce)</p>
-    </footer>
-  </div>
-
-
-
-
-
-
-
-  <script>
-    // search-box open close js code
-    let navbar = document.querySelector(".navbar");
-    let searchBox = document.querySelector(".search-box .bx-search");
-    // let searchBoxCancel = document.querySelector(".search-box .bx-x");
-
-    searchBox.addEventListener("click", () => {
-      navbar.classList.toggle("showInput");
-      if (navbar.classList.contains("showInput")) {
-        searchBox.classList.replace("bx-search", "bx-x");
-      } else {
-        searchBox.classList.replace("bx-x", "bx-search");
-      }
-    });
-
-    // sidebar open close js code
-    let navLinks = document.querySelector(".nav-links");
-    let menuOpenBtn = document.querySelector(".navbar .bx-menu");
-    let menuCloseBtn = document.querySelector(".nav-links .bx-x");
-    menuOpenBtn.onclick = function () {
-      navLinks.style.left = "0";
-    }
-    menuCloseBtn.onclick = function () {
-      navLinks.style.left = "-100%";
-    }
-
-
-    // sidebar submenu open close js code
-    let htmlcssArrow = document.querySelector(".htmlcss-arrow");
-    htmlcssArrow.onclick = function () {
-      navLinks.classList.toggle("show1");
-    }
-    let moreArrow = document.querySelector(".more-arrow");
-    moreArrow.onclick = function () {
-      navLinks.classList.toggle("show2");
-    }
-    let jsArrow = document.querySelector(".js-arrow");
-    jsArrow.onclick = function () {
-      navLinks.classList.toggle("show3");
-    }
-  </script>
-
-
-
-
-
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.navbar-item')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+                document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                    toggle.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
