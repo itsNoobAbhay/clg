@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomy Activities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #f8f9fa;
+            color: #333;
+            text-align: center;
+        }
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px 0;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .tab:hover {
+            background: #0056b3;
+        }
+        .content {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content.active {
+            display: block;
+        }
+        .home-button {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .home-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Autonomy Activities</div>
+    
+    <div class="image-container">
+        <img src="auto.png" alt="Autonomy Banner">
+    </div>
+
+    <div class="tabs">
+        <button class="tab" onclick="showTab('autonomy')">Autonomy</button>
+        <button class="tab" onclick="showTab('goals')">Goals</button>
+        <button class="tab" onclick="showTab('structure')">Structure</button>
+    </div>
+
+    <div id="autonomy" class="content active">
+        <h2>Activity committee</h2>
+        <p>Jai Hind College has successfully undergone three cycles of NAAC accreditation and placed consistently in the ‘A’ Grade. In the last (third) cycle, it has been a proud recipient of A++ grade with a CGPA score of 3.52 out of 4. In adherence to the recommendations of the NAAC peer team, the College submitted its proposal for grant of autonomy following which the Union Ministry of HRD and the University of Mumbai conferred the Autonomous Status on the institution from the academic year 2018-19 onwards. The University of Mumbai will confer the graduation and post-graduation degree which will now also bear the name of Jai Hind college.
+
+        </p>
+        <br>
+        <br>
+        <p>Subsequently, the University of Mumbai Management Council vide Resolution (Item 04) dated 27th June, 2023, conferred the prestigious Empowered Autonomous Status to Jai Hind College for a period of ten years from academic year 2023-24 to 2032-33.</p>
+
+    </div>
+    
+    <div id="goals" class="content">
+        <h2>Goals and Objectives</h2>
+        <p>Jai Hind College has been conferred the Autonomous Status by the Union Ministry of HRD and the University of Mumbai from the academic year 2018-19 onwards. The aims and objectives of the Institution in taking this giant step towards enhancement of overall excellence under Academic Autonomy are as follows:
+
+        </p>
+
+
+        <ul>
+            <li>To design its own curricula and syllabi in keeping with the global trends so as to provide world-class education;</li>
+            <li>To use modern pedagogical tools to achieve greater effectiveness in the teaching-learning process;</li>
+            <li>To evolve innovative methods to assess learning outcomes based on higher order thinking skills (HOTS);</li>
+            <li>To nurture creativity and out-of-the-box thinking;</li>
+        </ul>
+    </div>
+    
+    <div id="structure" class="content">
+        <h2>Structure Under Autonomy</h2>
+        <p>Jai Hind College Autonomous is governed by mandated Statutory Boards which include the Governing Body, Academic Council, Finance Committee, the Board of Studies of individual subjects and the IQAC which ensure reinforcement of the quality mechanisms outlined in the goals and objectives of the Institution. Based on the policy framework set by these Statutory Committees, the day-to-day administrative activities are carried out under the direction of the Head of the Institution, the Principal, and in consultation with the Academic Heads of Faculties, the Vice Principals and the Heads of various Departments as well as several administrative committees. The policies framed by these committees are based to a large extent on the feedback received from the various stakeholders involved in the overall educational process.
+
+        </p>
+
+    </div>
+
+    <a href="../../index.html" class="home-button">Home</a>
+    
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
