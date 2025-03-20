@@ -57,7 +57,7 @@
     <!-- Navigation Bar (assuming you have one in your template) -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">College Name</a>
+            <a class="navbar-brand" href="/">Shetkari Shikshan Sanstha's College of Management and Commerce</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -115,55 +115,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            let galleries = [];
-            let currentType = 'all';
-            const baseUrl = '/images/'; // Path to images directory
+    let galleries = [];
+    let currentType = 'all';
+    const baseUrl = '/images/';
 
-            // Fetch gallery data
-            fetch('/api/images')
-                .then(response => response.json())
-                .then(data => {
-                    galleries = data;
-                    setupGalleryTabs();
-                    displayImages();
-                })
-                .catch(error => {
-                    console.error('Error fetching gallery data:', error);
-                    document.getElementById('galleryImages').innerHTML = 
-                        '<div class="alert alert-danger w-100">Failed to load gallery images. Please try again later.</div>';
-                });
-
-            // Set up gallery tabs based on data
-            function setupGalleryTabs() {
-                const tabsContainer = document.getElementById('galleryTabs');
-                
-                // Add a tab for each gallery type
-                galleries.forEach(gallery => {
-                    const tab = document.createElement('button');
-                    tab.className = 'gallery-tab';
-                    tab.textContent = gallery.type;
-                    tab.dataset.type = gallery.type;
-                    tab.addEventListener('click', () => {
-                        // Set active tab
-                        document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
-                        tab.classList.add('active');
-                        
-                        // Update current type and display images
-                        currentType = gallery.type;
-                        displayImages();
-                    });
-                    tabsContainer.appendChild(tab);
-                });
-
-                // Add event listener to the "All" tab
-                document.querySelector('.gallery-tab[data-type="all"]').addEventListener('click', () => {
-                    document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelector('.gallery-tab[data-type="all"]').classList.add('active');
-                    currentType = 'all';
-                    displayImages();
-                });
+    // Fetch gallery data
+    fetch('/api/images')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
             }
-
+            return response.json();
+        })
+        .then(data => {
+            console.log('API response:', data);
+            // Ensure data is an array
+            galleries = Array.isArray(data) ? data : [];
+            
+            if (galleries.length === 0) {
+                document.getElementById('galleryImages').innerHTML = 
+                    '<div class="alert alert-info w-100">No gallery data available.</div>';
+                return;
+            }
+            
+            setupGalleryTabs();
+            displayImages();
+        })
+        .catch(error => {
+            console.error('Error fetching gallery data:', error);
+            document.getElementById('galleryImages').innerHTML = 
+                `<div class="alert alert-danger w-100">Failed to load gallery images: ${error.message}</div>`;
+        });
             // Display images based on selected type
             function displayImages() {
                 const galleryContainer = document.getElementById('galleryImages');

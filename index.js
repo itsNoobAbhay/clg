@@ -31,15 +31,29 @@ const Image = mongoose.model('Image', ImageSchema, 'clg.images'); // Use existin
 // API to Get Images by Category
 app.get('/api/images', async (req, res) => {
     try {
-        const galleries = await mongoose.connection.db.collection('galleries').find().toArray();
-        console.log(galleries)
+        const db = mongoose.connection.db;
+        if (!db) {
+            throw new Error("Database connection not established");
+        }
+        
+        const collection = db.collection('galleries');
+        if (!collection) {
+            throw new Error("Collection not found");
+        }
+        
+        const galleries = await collection.find().toArray();
+        console.log("Galleries data:", galleries);
+        
+        if (!galleries || !Array.isArray(galleries)) {
+            return res.json([]);  // Return empty array instead of null/undefined
+        }
+        
         res.json(galleries);
     } catch (error) {
         console.error("Error fetching images:", error);
-        res.status(500).json({ error: "Failed to fetch images" });
+        res.status(500).json({ error: "Failed to fetch images", message: error.message });
     }
 });
-
 
 // Serve Pages
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
