@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download PDFs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #f8f9fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 40px;
+        }
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .download-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dc3545;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background 0.3s;
+            margin: 0 auto;
+            width: 180px;
+        }
+        .download-button:hover {
+            background: #b02a37;
+        }
+        .download-button::before {
+            content: "📄";
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .home-button {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .home-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Shetkari Shikshan Sanstha's College of Management and
+        Commerce</div>
+
+    <h1>Meetings</h1>
+
+    <div class="card">
+        <h2>mints-meeting-1-2021</h2>
+        <a href="mints-meeting-1-2021.pdf" class="download-button" download>Download PDF</a>
+    </div>
+
+    <div class="card">
+        <h2>mints-meeting-2-2021</h2>
+        <a href="mints-meeting-2-2021.pdf" class="download-button" download>Download PDF</a>
+    </div>
+
+    <a href="../../index.html" class="home-button">Home</a>
+</body>
+</html>
