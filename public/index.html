@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Website Navbar</title>
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <style>
         * {
             margin: 0;
@@ -18,170 +19,7 @@
             background-color: #f5f5f5;
         }
 
-        .navbar {
-            background-color: #3E8DA8;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            z-index: 100;
-        }
-
-        .navbar-container {
-            max-width: 1200px;
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .navbar-item {
-            position: relative;
-            color: white;
-            padding: 15px 12px;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-
-        .navbar-item:hover {
-            background-color: #2c6478;
-        }
-
-        .navbar-item a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .module-text {
-            cursor: pointer;
-        }
-
-        .dropdown-toggle {
-            margin-left: 6px;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown-toggle.active {
-            transform: rotate(90deg);
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 230px;
-            background-color: #3E8DA8;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 101;
-        }
-
-        .dropdown.show {
-            display: block;
-        }
-
-        .dropdown-item {
-            display: block;
-            padding: 12px 16px;
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid #2c6478;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-item:hover {
-            background-color: #2c6478;
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 15px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 1000px) {
-            .navbar {
-                justify-content: flex-start;
-                padding-left: 15px;
-            }
-
-            .mobile-toggle {
-                display: block;
-                text-align: left;
-                width: auto;
-            }
-
-            .navbar-container {
-                position: fixed;
-                top: 0;
-                left: -70%;
-                width: 70%;
-                height: 100%;
-                background-color: #3E8DA8;
-                flex-direction: column;
-                overflow-y: auto;
-                transition: left 0.3s ease;
-                z-index: 102;
-                padding-top: 60px;
-            }
-
-            .navbar-container.active {
-                left: 0;
-            }
-
-            .navbar-item {
-                width: 100%;
-                padding: 12px 16px;
-                border-bottom: 1px solid #2c6478;
-            }
-
-            .navbar-item a {
-                color: white;
-                text-decoration: none;
-            }
-
-            .dropdown {
-                position: static;
-                width: 100%;
-                box-shadow: none;
-                background-color: #2c6478;
-            }
-
-            .dropdown-item {
-                padding-left: 24px;
-                background-color: #2c6478;
-                border-bottom: 1px solid #1b5162;
-            }
-
-            .dropdown-item:hover {
-                background-color: #1b5162;
-            }
-
-            .dropdown-toggle.active {
-                transform: rotate(90deg);
-            }
-
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 101;
-            }
-
-            .overlay.active {
-                display: block;
-            }
-        }
+        
 
         /* HERO SECTION */
         .hero {
@@ -302,18 +140,18 @@
                 <a href="#aboutus" class="direct-link">About Us</a>
                 <span class="dropdown-toggle module-text">></span>
                 <div class="dropdown">
-                    <a href="#principal" class="dropdown-item">From the Principal's Desk</a>
-                    <a href="#profile" class="dropdown-item">Profile</a>
-                    <a href="#programmes" class="dropdown-item">Programmes</a>
+                    <a href="templates/aboutus/principle.html" class="dropdown-item">From the Principal's Desk</a>
+                    <a href="templates/aboutus/institute.html" class="dropdown-item">Institute</a>
+                    <a href="templates/aboutus/management.html" class="dropdown-item">Management</a>
                 </div>
             </div>
 
             <div class="navbar-item">
-                <a href="#events" class="direct-link">Events</a>
+                <a href="templates/events/event.html" class="direct-link">Events</a>
                 <span class="dropdown-toggle module-text">></span>
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                     <a href="#spectrum" class="dropdown-item">Spectrum</a>
-                </div>
+                </div> -->
             </div>
 
             <div class="navbar-item">
@@ -418,8 +256,8 @@
         <div class="header-text" style="text-align: left;">
             <!-- <p style="margin: 0; font-size: 14px; color: #666;">Parle Tilak Vidyalaya Association</p>  -->
             <!-- <h1 style="margin: 0; font-size: 24px; color: #333;">MULUND COLLEGE OF COMMERCE (AUTONOMOUS)</h1> -->
-            <h1 style="margin: 0; font-size: 24px; color: #333;">Shetkari Shikshan Sanstha's college of management and
-                commerce</h1>
+            <h1 style="margin: 0; font-size: 24px; color: #333;">Shetkari Shikshan Sanstha's College of Management and
+                Commerce</h1>
             <!-- <p style="margin: 0; font-size: 14px; color: #666;">NAAC "A" GRADE RE-ACCREDITEDM (III Cycle) 2016-2026</p> -->
         </div>
     </header>

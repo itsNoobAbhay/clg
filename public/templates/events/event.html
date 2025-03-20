@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Events</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 40px;
+        }
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid #ccc;
+            margin-bottom: 40px;
+        }
+        .home-button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+        .home-button:hover {
+            background: #0056b3;
+        }
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+        }
+        .event-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            text-align: left;
+        }
+        .event-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .event-card h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .event-card p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">College Events</div>
+    
+    <div class="events-container">
+        <div class="event-card">
+            <img src="cultural_fest.jpeg" alt="Cultural Fest">
+            <h2>Cultural Fest</h2>
+            <p>Our annual Cultural Fest is a grand celebration of music, dance, drama, and arts. Students showcase their talents in various cultural activities, making it a vibrant and unforgettable event.</p>
+        </div>
+        <div class="event-card">
+            <img src="tech_fest.jpeg" alt="Tech Fair">
+            <h2>Tech Fair</h2>
+            <p>The Tech Fair is an exciting event where students display their innovative projects, robotics, and AI-based applications. It encourages creativity and hands-on learning.</p>
+        </div>
+        <div class="event-card">
+            <img src="sports_fest.jpg" alt="Sports Meet">
+            <h2>Annual Sports Meet</h2>
+            <p>Our college's Annual Sports Meet is a platform for students to participate in various sports events, showcasing their athletic skills and team spirit.</p>
+        </div>
+        <div class="event-card">
+            <img src="seminar.jpeg" alt="Guest Seminar">
+            <h2>Guest Seminar</h2>
+            <p>Industry experts and scholars visit our college to conduct insightful seminars on emerging trends and career opportunities, helping students stay updated with the latest advancements.</p>
+        </div>
+    </div>
+
+    <a href="../../index.html" class="home-button">Home</a>
+</body>
+</html>
