@@ -251,7 +251,7 @@
     <header
         style="display: flex; align-items: center; justify-content: center; background-color: #f5f5f5; padding: 20px; border-bottom: 2px solid #ddd; gap: 20px;">
         <div class="logo" style="flex-shrink: 0;">
-            <img src="assets/MCClogo.png" alt="Logo" style="height: 60px; width: auto;">
+            <img src="assets/logo.jpeg" alt="Logo" style="height: 60px; width: auto;">
         </div>
         <div class="header-text" style="text-align: left;">
             <!-- <p style="margin: 0; font-size: 14px; color: #666;">Parle Tilak Vidyalaya Association</p>  -->
@@ -341,81 +341,77 @@
     </div>
 
 
-
-    <script>
-        // JavaScript for mobile menu toggle
-        document.querySelector('.mobile-toggle').addEventListener('click', function () {
-            document.querySelector('.navbar-container').classList.toggle('active');
-            document.querySelector('.overlay').classList.toggle('active');
+<script>
+    // Mobile menu toggle
+    document.querySelector('.mobile-toggle').addEventListener('click', function () {
+        document.querySelector('.navbar-container').classList.toggle('active');
+        document.querySelector('.overlay').classList.toggle('active');
+    });
+    
+    // Function to toggle dropdown with position correction
+    function toggleDropdown(element) {
+        const navItem = element.closest('.navbar-item');
+        if (!navItem) return;
+    
+        const dropdown = navItem.querySelector('.dropdown');
+        const dropdownToggle = navItem.querySelector('.dropdown-toggle');
+    
+        if (!dropdown || !dropdownToggle) return;
+    
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown').forEach(d => {
+            if (d !== dropdown) d.classList.remove('show');
         });
-
-        // Function to toggle dropdown
-        function toggleDropdown(element) {
-            // Get parent navbar-item
-            const navItem = element.closest('.navbar-item');
-            if (!navItem) return;
-
-            const dropdown = navItem.querySelector('.dropdown');
-            const dropdownToggle = navItem.querySelector('.dropdown-toggle');
-
-            // If no dropdown, it's a direct link - don't interfere
-            if (!dropdown || !dropdownToggle) return;
-
-            // Close all other dropdowns
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                if (dropdown !== navItem.querySelector('.dropdown')) {
-                    dropdown.classList.remove('show');
-                }
-            });
-            document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                if (toggle !== dropdownToggle) {
-                    toggle.classList.remove('active');
-                }
-            });
-
-            // Toggle current dropdown
-            dropdownToggle.classList.toggle('active');
-            dropdown.classList.toggle('show');
+        document.querySelectorAll('.dropdown-toggle').forEach(t => {
+            if (t !== dropdownToggle) t.classList.remove('active');
+        });
+    
+        // Toggle current dropdown
+        dropdownToggle.classList.toggle('active');
+        dropdown.classList.toggle('show');
+    
+        // Adjust position if dropdown is out of viewport
+        const rect = dropdown.getBoundingClientRect();
+        if (rect.bottom > window.innerHeight) {
+            dropdown.style.top = `-${dropdown.offsetHeight}px`; // Move up if overflowing
+        } else {
+            dropdown.style.top = '100%'; // Default position
         }
-
-        // Add click event listeners for dropdown toggles
-        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function (e) {
-                e.stopPropagation();
+    }
+    
+    // Add event listeners for dropdown toggles
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleDropdown(this);
+        });
+    });
+    
+    // Add event listeners for module text (prevent immediate navigation on mobile)
+    document.querySelectorAll('.direct-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            const dropdown = this.closest('.navbar-item')?.querySelector('.dropdown');
+            if (dropdown) {
+                e.preventDefault(); // Prevent navigation on first click
                 toggleDropdown(this);
-            });
-        });
-
-        // Add click event listeners for module text (main menu items)
-        document.querySelectorAll('.direct-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                // If the link has dropdown siblings
-                const dropdown = this.closest('.navbar-item').querySelector('.dropdown');
-                if (dropdown) {
-                    e.preventDefault(); // Prevent navigation on first click
-                    toggleDropdown(this);
-                }
-            });
-        });
-
-        // Close sidebar when clicking overlay
-        document.querySelector('.overlay').addEventListener('click', function () {
-            document.querySelector('.navbar-container').classList.remove('active');
-            document.querySelector('.overlay').classList.remove('active');
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', function (event) {
-            if (!event.target.closest('.navbar-item')) {
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('show');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-                    toggle.classList.remove('active');
-                });
             }
         });
-    </script>
+    });
+    
+    // Close sidebar when clicking overlay
+    document.querySelector('.overlay').addEventListener('click', function () {
+        document.querySelector('.navbar-container').classList.remove('active');
+        this.classList.remove('active');
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function (event) {
+        if (!event.target.closest('.navbar-item')) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('show'));
+            document.querySelectorAll('.dropdown-toggle').forEach(toggle => toggle.classList.remove('active'));
+        }
+    });
+</script>
 </body>
 
 </html>
