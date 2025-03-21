@@ -133,6 +133,44 @@
         }
     </style>
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navbarContainer = document.querySelector('.navbar-container');
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+        mobileToggle.addEventListener('click', function() {
+            navbarContainer.classList.toggle('active');
+        });
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close all other dropdowns
+                dropdownToggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        otherToggle.parentElement.querySelector('.dropdown').classList.remove('active');
+                    }
+                });
+
+                // Toggle current dropdown
+                const dropdown = toggle.parentElement.querySelector('.dropdown');
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navbar-item')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+    });
+</script>
 
 <body>
     <nav class="navbar">
@@ -332,34 +370,42 @@
     
     // Function to toggle dropdown with position correction
     function toggleDropdown(element) {
-        const navItem = element.closest('.navbar-item');
-        if (!navItem) return;
-    
-        const dropdown = navItem.querySelector('.dropdown');
-        const dropdownToggle = navItem.querySelector('.dropdown-toggle');
-    
-        if (!dropdown || !dropdownToggle) return;
-    
-        // Close all other dropdowns
-        document.querySelectorAll('.dropdown').forEach(d => {
-            if (d !== dropdown) d.classList.remove('show');
-        });
-        document.querySelectorAll('.dropdown-toggle').forEach(t => {
-            if (t !== dropdownToggle) t.classList.remove('active');
-        });
-    
-        // Toggle current dropdown
-        dropdownToggle.classList.toggle('active');
-        dropdown.classList.toggle('show');
-    
-        // Adjust position if dropdown is out of viewport
-        const rect = dropdown.getBoundingClientRect();
-        if (rect.bottom > window.innerHeight) {
-            dropdown.style.top = `-${dropdown.offsetHeight}px`; // Move up if overflowing
-        } else {
-            dropdown.style.top = '100%'; // Default position
-        }
+    const navItem = element.closest('.navbar-item');
+    if (!navItem) return;
+
+    const dropdown = navItem.querySelector('.dropdown');
+    const dropdownToggle = navItem.querySelector('.dropdown-toggle');
+
+    if (!dropdown || !dropdownToggle) return;
+
+    // Close all other dropdowns first
+    document.querySelectorAll('.dropdown').forEach(d => {
+        if (d !== dropdown) d.classList.remove('show');
+    });
+
+    document.querySelectorAll('.dropdown-toggle').forEach(t => {
+        if (t !== dropdownToggle) t.classList.remove('active');
+    });
+
+    // Get dropdown position
+    const rect = dropdown.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.top;
+    const spaceAbove = rect.top;
+
+    // If not enough space below, position dropdown above
+    if (spaceBelow < dropdown.offsetHeight && spaceAbove > dropdown.offsetHeight) {
+        dropdown.style.top = "auto";
+        dropdown.style.bottom = "100%";
+    } else {
+        dropdown.style.top = "100%";
+        dropdown.style.bottom = "auto";
     }
+
+    // Show dropdown
+    dropdownToggle.classList.toggle('active');
+    dropdown.classList.toggle('show');
+}
+
     
     // Add event listeners for dropdown toggles
     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
