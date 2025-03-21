@@ -62,6 +62,11 @@
 
 .dropdown.show {
     display: block;
+    z-index: 999; 
+}
+.navbar-item:last-child .dropdown {
+    left: auto;
+    right: 0;
 }
 
 .dropdown-item {
