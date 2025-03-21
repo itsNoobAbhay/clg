@@ -405,12 +405,18 @@
     });
     
     // Close dropdowns when clicking outside
-    document.addEventListener('click', function (event) {
-        if (!event.target.closest('.navbar-item')) {
-            document.querySelectorAll('.dropdown').forEach(dropdown => dropdown.classList.remove('show'));
-            document.querySelectorAll('.dropdown-toggle').forEach(toggle => toggle.classList.remove('active'));
-        }
-    });
+    // Close dropdowns when clicking outside
+document.addEventListener('click', function (event) {
+    if (!event.target.closest('.navbar-item') && !event.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.classList.remove('show');
+        });
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.classList.remove('active');
+        });
+    }
+});
+
 </script>
 </body>
 
