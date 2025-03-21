@@ -1,25 +1,44 @@
 .navbar {
+    height: 60px; /* Fixed height */
+    padding: 5px 0;
     background-color: #3E8DA8;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 100;
+    margin-top: -5px;
+    overflow: hidden;
 }
 
 .navbar-container {
     max-width: 1200px;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevents items from wrapping */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    scrollbar-width: thin;
+    scrollbar-color: #2c6478 transparent;
+    white-space: nowrap;
+}
+
+/* Custom scrollbar for WebKit browsers */
+.navbar-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.navbar-container::-webkit-scrollbar-thumb {
+    background: #2c6478;
+    border-radius: 10px;
 }
 
 .navbar-item {
     position: relative;
     color: white;
-    padding: 15px 12px;
+    padding: 5px 12px;
     display: flex;
     align-items: center;
     transition: background-color 0.3s;
+    flex-shrink: 0; /* Prevents items from shrinking */
 }
 
 .navbar-item:hover {
@@ -57,13 +76,14 @@
     display: none;
     z-index: 101;
     max-height: 200px; 
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .dropdown.show {
     display: block;
     z-index: 999; 
 }
+
 .navbar-item:last-child .dropdown {
     left: auto;
     right: 0;
