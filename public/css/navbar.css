@@ -102,7 +102,9 @@
         top: 0;
         left: -70%;
         width: 70%;
+        height: 100vh; /* Ensures it fits full screen height */
         max-height: 100vh; 
+        
         background-color: #3E8DA8;
         flex-direction: column;
         overflow-y: auto; /* Enables vertical scrolling */
