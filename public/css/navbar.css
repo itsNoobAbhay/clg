@@ -103,6 +103,7 @@
         left: -70%;
         width: 70%;
         height: 100%;
+        max-height: 100vh; 
         background-color: #3E8DA8;
         flex-direction: column;
         overflow-y: auto; /* Enables vertical scrolling */
