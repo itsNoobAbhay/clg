@@ -6,7 +6,7 @@
     <title>alumni</title>
     <style>
         * {
-            margin: 0;
+            margin: 1;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
@@ -99,7 +99,7 @@
     <div class="card">
         <h1>Objectives</h1>
         <ul>
-            <li>To provide a platform for interaction between alumni, present students, faculty of the college and college administration.</li>
+            <li> between alumni, present students, faculty of the college and college administration.</li>
             <li>To improve the facilities and infrastructure of the college with the help of active participation of the alumni                .</li>
             <li>To make available the expertise and experience of the alumni for the development of research and educational activities of the college.
             </li>
@@ -144,4 +144,36 @@
     </div>
     <a href="../../index.html" class="home-button">Home</a>
 </body>
+<script>
+    async function saveChanges() {
+    try {
+        const selectedPage = pageSelect.value;
+        const newContent = pageContent.value;
+
+        if (!selectedPage) {
+            alert("Select a page first!");
+            return;
+        }
+
+        const response = await fetch("/api/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ path: selectedPage, content: newContent })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Failed to save page");
+        }
+
+        const result = await response.json();
+        alert(result.message);
+    } catch (error) {
+        console.error("Save error:", error);
+        alert(`Error: ${error.message}`);
+    }
+}
+</script>
 </html>
